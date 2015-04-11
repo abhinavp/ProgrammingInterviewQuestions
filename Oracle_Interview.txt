@@ -1,0 +1,15 @@
+Phone interview
+1. Life cycle of a thread
+2. Difference between externalization and serialization
+3. Replace all the string in unix by a command
+/%s/original_string/replace_string
+4. Difference between beforetest and beforemethod - TestNg
+5. Binary search
+
+Onsite
+1. Given a tournament, find top 5 teams and top 5 players who scored maximum.Design and Code.
+2. Reverse a string recursively
+3. TestNg annotation by giving use case - beforesuite and beforeclass
+4. Lots of SQL queries, join, outer join, full join, aggregate functions - Given the laptop and exceute bunch of queries
+5. Given laptop - build a simple restaurant billing system(price + tip) and execute on vi 
+6. Some test related questions

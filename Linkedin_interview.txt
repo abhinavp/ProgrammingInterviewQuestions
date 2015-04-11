@@ -1,0 +1,2 @@
+1. Find if strings are isomorphic or not and extend that code to N strings in O(n) time.
+2. If some relevancy drops to 20% how would you debug?
