@@ -2,7 +2,7 @@ package array;
 
 public class SelfExcludingProduct {
 
-	public static void main(String [] args){
+	public static void main(String[] args){
 		int [] num = new int []{2, 6, 4, 8};
 		getProductArray(num, 4);
 	}

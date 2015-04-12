@@ -1,0 +1,4 @@
+telephonic:
+- rotate an array. input: a,b,c,d,e ; rotate by: 2 ;  output: c,d,e,a,b
+- IsAnagram.
+- REST based questions.
