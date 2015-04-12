@@ -145,4 +145,36 @@ public class BinarySearch {
 	        }
 	    }
 	}
+
+	/**
+	 * unknown array length or unlimited array.
+	 * input(<array>,0,1,<searchElement>)
+	 * @param num
+	 * @param start
+	 * @param end
+	 * @param search
+	 * @return
+	 */
+	public static Integer modifiedBinarySearch(int[] num, int start, int end, int search) {
+		if (start > end) {
+			return null;
+		}
+
+		try {
+			if (num[end] < search) {
+				return modifiedBinarySearch(num, end, 2 * end, search);
+			} else {
+				int mid = (start + end) / 2;
+				if (num[mid] == search) {
+					return mid;
+				} else if (num[mid] > search) {
+					return modifiedBinarySearch(num, start, mid - 1, search);
+				} else {
+					return modifiedBinarySearch(num, mid + 1, end, search);
+				}
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return modifiedBinarySearch(num, start, end - 1, search);
+		}
+	}
 }
