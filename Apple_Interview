@@ -1,0 +1,3 @@
+1. Given a prototype, some weird nested non static and nested class, fill all the methods of a linkedlist(addfirst, addlast,
+deletefirst, deletemid, reverse, insertfirst, insertlast, print)
+2. Given a prototype, some nested class, print if the number is prime or not. 
