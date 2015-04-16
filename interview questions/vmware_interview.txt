@@ -1,0 +1,4 @@
+sort a list of strings like in a dictionary. 
+- how to retrieve values from a hashmap in o(1).
+- asked more on resume to give an overview about the work done. 
+- map/reduce. struts and wicket.

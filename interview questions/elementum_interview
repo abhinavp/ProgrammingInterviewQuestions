@@ -5,6 +5,10 @@ telephonic:
 onsite:
 - org. chart map is given. get subordinates for given employee
 - binary search in an unlimited array.  
-- put, post examples
+- get, put, post examples
 - test framework based questions
-- 
+- how to compare two large jsons
+	- how to ignore some fields from those jsons while comparison.
+	- overriding equals jackson's treemodel api: http://stackoverflow.com/a/2255893, http://stackoverflow.com/a/3217065
+
+	
