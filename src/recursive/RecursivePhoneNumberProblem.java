@@ -80,9 +80,20 @@ public class RecursivePhoneNumberProblem {
 		return arrayList;
 	}
 	
+	public static int reverseNumber(int number){
+		int reverse = 0;
+		while(number!=0){
+			reverse = reverse * 10 + number % 10;
+			number = number / 10;
+		}
+		return reverse;
+	}
+	
 	
 	public static void main(String[] args){
-		arrayList = create(34);
+		
+		int number = 34;
+		arrayList = create(reverseNumber(number));
 		
 		for(String s: arrayList){
 			System.out.println("combo: "+ s);
