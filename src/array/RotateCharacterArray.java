@@ -1,5 +1,6 @@
 package array;
 
+
 public class RotateCharacterArray {
 
 	public static void main(String[] args){
@@ -7,6 +8,12 @@ public class RotateCharacterArray {
 		int k = 2;
 		rotateArray(characterArray,k);
 		System.out.println(new String(characterArray));
+		
+		int[] intArray = {1,2,3,4,5};
+		rotateArray(intArray,k);
+		for(int i:intArray){
+			System.out.print(i+" ");
+		}
 	}
 	
 	/**
@@ -25,5 +32,23 @@ public class RotateCharacterArray {
 			}
 			characterArray[j - 1] = temp; 
 		}
+	}
+	
+	public static void rotateArray(int[] a, int k){
+		reverse(a,0,k-1);
+		reverse(a,k,a.length-1);
+		reverse(a,0,a.length-1);
+	}
+
+	public static void reverse(int[] a, int start,int end){
+		for(int i=start,j=end;i<j;i++,--j){
+			swap(a,i,j);
+		}
+	}
+
+	public static void swap(int[] a, int start, int end){
+		int temp = a[start];
+		a[start] = a[end];
+		a[end] = temp;
 	}
 }
