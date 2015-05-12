@@ -1,3 +1,16 @@
+telephonic:
 1. Given a prototype, some weird nested non static and nested class, fill all the methods of a linkedlist(addfirst, addlast,
 deletefirst, deletemid, reverse, insertfirst, insertlast, print)
 2. Given a prototype, some nested class, print if the number is prime or not. 
+
+
+
+telephonic:
+1. what features to consider while designing a test framework
+2. How are REST calls made
+3. How to serialize and deserialize. how to do custom serialization. what is the library in jackson to do the same. 
+4. how to compare two large jsons
+5. how to edit content in jsons while comparing them.
+6. what happens when we type in google.com
+7. how to parse a file which has [timestamp:serviceId:error/warning messages]
+8. how does a http request and response look like. 

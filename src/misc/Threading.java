@@ -8,7 +8,7 @@ public class Threading {
 	public static void main(String[] args) {
 		new Threading().doWork();
 		
-		new Worker().performTask();
+		//new Worker().performTask();
 	}
 	
 	public synchronized void increment(){
