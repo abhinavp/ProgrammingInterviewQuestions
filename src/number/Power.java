@@ -29,6 +29,7 @@ public class Power {
 		return (power > 0) ? value : 1 / value;
 	}
 	
+	//efficient algorithm
 	public static double efficientPowerAlgorithm(double base, int power){
 		if (base == 0) return 0;
 		if (power == 0) return 1;
@@ -56,4 +57,13 @@ public class Power {
 		return value;
 	}
 
+	//recursive 
+	private static double power(double x, double n) {
+	    if (n == 1.0) return x;
+	    else if (n % 2 == 1) return x * power(x, n - 1);
+	    else {
+	        double b = power(x, n / 2);
+	        return b * b;
+	    }
+	}
 }
