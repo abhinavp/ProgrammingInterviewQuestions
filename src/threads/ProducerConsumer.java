@@ -1,67 +1,68 @@
 package threads;
 
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProducerConsumer {
 
-	static Object lock = new Object();
-	static LinkedList<Integer> linkedList = new LinkedList<Integer>();
-	public static int LIMIT = 10;
+	public static void main(String args[]){
 
-	public static void main(String[] args) {
-		Thread producer = new Thread(new Producer());
-		Thread consumer = new Thread(new Consumer());
+		//Creating shared object
+		BlockingQueue sharedQueue = new LinkedBlockingQueue();
 
-		producer.start();
-		consumer.start();
+		//Creating Producer and Consumer Thread
+		Thread prodThread = new Thread(new Producer(sharedQueue));
+		Thread consThread = new Thread(new Consumer(sharedQueue));
+
+		//Starting producer and Consumer thread
+		prodThread.start();
+		consThread.start();
 	}
 
-	static class Producer implements Runnable {
-		public void run() {
+}
 
-			while (true) {
-				try {
-					Random random = new Random();
-					Thread.sleep(random.nextInt(500));
-					synchronized (lock) {
+//Producer Class in java
+class Producer implements Runnable {
 
-						while (LIMIT == linkedList.size()) {
-							lock.wait();
+	private final BlockingQueue sharedQueue;
 
-						}
-						int num = random.nextInt(1000);
-						linkedList.add(num);
-						System.out.println("List size: " + linkedList.size() + " number added: " + num);
-						lock.notify();
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	public Producer(BlockingQueue sharedQueue) {
+		this.sharedQueue = sharedQueue;
+	}
+
+	@Override
+	public void run() {
+		for(int i=0; i<10; i++){
+			try {
+				System.out.println("Produced: " + i);
+				sharedQueue.put(i);
+			} catch (InterruptedException ex) {
+				Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
 	}
 
-	static class Consumer implements Runnable {
-		public void run() {
-			while (true) {
-				try {
-					Random random = new Random();
-					Thread.sleep(random.nextInt(500));
-					synchronized (lock) {
-						while (linkedList.size() == 0) {
-							lock.wait();
-						}
-						System.out.println("List size: " + linkedList.size() + " number removed: "
-								+ linkedList.removeFirst());
-						lock.notify();
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+}
+
+//Consumer Class in Java
+class Consumer implements Runnable{
+
+	private final BlockingQueue sharedQueue;
+
+	public Consumer (BlockingQueue sharedQueue) {
+		this.sharedQueue = sharedQueue;
+	}
+
+	@Override
+	public void run() {
+		while(true){
+			try {
+				System.out.println("Consumed: "+ sharedQueue.take());
+			} catch (InterruptedException ex) {
+				Logger.getLogger(Consumer.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-	}
+	} 
 }
