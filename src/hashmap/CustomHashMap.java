@@ -32,7 +32,7 @@ public class CustomHashMap<K,V>{
 		
 		Entry<K,V> entry = table[bucket];
 		while(entry!=null){
-			if(entry.key == key){
+			if(entry.hash == hash && entry.key == key){
 				return entry.value;
 			}
 			entry = entry.next;
