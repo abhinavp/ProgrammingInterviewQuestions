@@ -263,7 +263,7 @@ class TreeOperations {
 	 * LCA for a binary tree.
 	 * 
 	 */
-	public static newTree lowestCommonAncestor(newTree root, Node a, Node b) {
+	public static newTree lowestCommonAncestor(newTree root, newTree a, newTree b) {
 	    if (root == null) {
 	        return null;
 	    }
@@ -286,18 +286,18 @@ class TreeOperations {
 	    return l != null ? l : r;
 	}
 	
-	public void printByLevelRecursive(Node root){
-		Queue<Node> queue = new LinkedList<Node>();
+	public void printByLevelRecursive(newTree root){
+		Queue<newTree> queue = new LinkedList<newTree>();
 		queue.add(root);
 		printByLevelRecursive(queue);
 	}
 	
-	public void printByLevelRecursive(Queue<Node> queue){
+	public void printByLevelRecursive(Queue<newTree> queue){
 		if(queue.isEmpty()){
 			return;
 		}
 		
-		Node node = queue.poll();
+		newTree node = queue.poll();
 		System.out.print(node.data + " ");
 		if(node.left != null){
 			queue.add(node.left);
@@ -308,6 +308,39 @@ class TreeOperations {
 		}
 		
 		printByLevelRecursive(queue);
+	}
+
+	/**
+	 * Printing the tree in level order.
+	 * @param tree
+	 */
+	public static void printLevelOrder(newTree tree) {
+		if (tree == null)
+			return;
+		Queue<newTree> queue = new LinkedList<newTree>();
+		int currentLevel = 1;
+		int nextLevel = 0;
+		queue.add(tree);
+		while (!queue.isEmpty()) {
+			newTree currNode = queue.poll();
+			if (currNode != null) {
+				System.out.print(currNode.data + " ");
+				currentLevel--;
+			}
+			if (currNode.left != null) {
+				queue.add(currNode.left);
+				nextLevel++;
+			}
+			if (currNode.right != null) {
+				queue.add(currNode.right);
+				nextLevel++;
+			}
+			if (currentLevel == 0) {
+				System.out.println();
+				currentLevel = nextLevel;
+				nextLevel = 0;
+			}
+		}
 	}
 }
 
