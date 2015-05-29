@@ -99,9 +99,37 @@ public class Power {
 		}
 	}
 
+	/**
+	 * works in negative case too.
+	 * @param base
+	 * @param power
+	 * @return
+	 */
+	public static double pow(double base, long power){
+		double value;
+		if(power < 0 ){
+			value = powerHelper(base, (-power)); 
+			value = 1 / value;
+		} else {
+			value = powerHelper(base, power); 
+		}
+		return value;
+	}
+
+	public static double powerHelper(double base, long power){
+		if(power == 1){
+			return base;
+		} else if(power%2 != 0){
+			return base * powerHelper(base,(power - 1));
+		} else {
+			double value = powerHelper(base,power/2);
+			return value * value;
+		}
+	}
+
 	
 	/**
-	 * works for negative/positive
+	 * works for negative/positive numbers both.
 	 * complexity - O(log n)
 	 * @param x
 	 * @param n
