@@ -8,41 +8,43 @@ public class LongestPalindrome {
 		longestPalindrome("nitinaade");
 		longestPalindromeNaive("nittinaade");
 		longestPalindromeNaive("nitinaade");
+		longestPalindrome("nitinnnnaabhihbaa");//odd length: 17
+		longestPalindrome("nitin"); // odd length: 5
+		longestPalindrome("5123443218"); // odd length: 10
 	}
 
-	// BBABCBCAB
-	// nitin
-	// niin
-	public static void longestPalindrome(String string) {
+	public static void longestPalindrome(String str) {
+		int longestStart = 0, longestEnd = 0;
+		int left = 0, right = 0;
+		for (int mid = 0;mid < str.length();mid++) {
+			left = mid;
+			right = mid;
+			while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)) {
+				if ((longestEnd - longestStart) <= (right - left)) {
+					longestStart = left;
+					longestEnd = right;
+				}
+				left--;
+				right++;
+			}
 
-		int start = 0, end = 0;
-		for (int mid = 0; mid < string.length(); mid++) {
-			int left = mid;
-			int right = mid;
-			while (left >= 0 && right < string.length()) {
-				if (string.charAt(left) == string.charAt(right) && (right - left > end - start)) {
-					end = right;
-					start = left;
+			left = mid;
+			right = mid + 1;
+			while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)) {
+				if ((longestEnd - longestStart) <= (right - left)) {
+					longestStart = left;
+					longestEnd = right;
 				}
 				left--;
 				right++;
 			}
 		}
 
-		for (int mid = 0; mid < string.length(); mid++) {
-			int left = mid;
-			int right = mid+1;
-			while (left >= 0 && right < string.length()) {
-				if (string.charAt(left) == string.charAt(right) && (right - left > end - start)) {
-					end = right;
-					start = left;
-				}
-				left--;
-				right++;
-			}
+		
+		for (int i = longestStart; i <= longestEnd; i++) {
+			System.out.print(str.charAt(i));
 		}
-
-		System.out.println("longest palindrome: " + string.substring(start, end + 1));
+		System.out.println();
 	}
 	
 	
