@@ -3,6 +3,10 @@ package string;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * http://stackoverflow.com/a/14518026
+ *
+ */
 public class FindReplace {
 	static String replace2(String s, String target, String replacement) {
 		StringBuilder sb = null;
