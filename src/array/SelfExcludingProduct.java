@@ -34,4 +34,20 @@ public class SelfExcludingProduct {
 	    System.out.print(prod[i]+",");
 	  }
 	}
+
+
+	public static void selfExcludingProduct2(int[] array){
+		int product = 1;
+		for(int i=0;i<array.length;i++){
+			product = product * array[i];
+		}
+		
+		for(int i=0;i<array.length;i++){
+			array[i] = product / array[i];
+		}
+		
+		for(int i : array){
+			System.out.print(i + " ");	
+		}
+	}
 }
