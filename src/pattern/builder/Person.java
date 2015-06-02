@@ -1,4 +1,4 @@
-package builder;
+package pattern.builder;
 
 public class Person {
 	private final String name;

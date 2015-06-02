@@ -1,4 +1,4 @@
-package singleton;
+package pattern.singleton;
 
 public class SingletonLazyInitialization{
 	private volatile static SingletonLazyInitialization instance;

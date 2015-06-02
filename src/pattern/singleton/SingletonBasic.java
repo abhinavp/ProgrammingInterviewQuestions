@@ -1,4 +1,4 @@
-package singleton;
+package pattern.singleton;
 
 public class SingletonBasic {
 	private volatile static SingletonBasic INSTANCE;

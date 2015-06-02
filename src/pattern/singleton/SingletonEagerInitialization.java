@@ -1,4 +1,4 @@
-package singleton;
+package pattern.singleton;
 
 public class SingletonEagerInitialization{
 	private final static SingletonEagerInitialization INSTANCE = new SingletonEagerInitialization();

@@ -1,4 +1,4 @@
-package decorator;
+package pattern.decorator;
 
 public class HorizontalWindowDecorator extends WindowDecorator{
 	public HorizontalWindowDecorator(Window window){

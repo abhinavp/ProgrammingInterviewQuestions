@@ -1,4 +1,4 @@
-package singleton;
+package pattern.singleton;
 
 /**
  * enum fields are compile time constants, but they are instances of their enum type. 

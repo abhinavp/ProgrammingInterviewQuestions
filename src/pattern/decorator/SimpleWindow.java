@@ -1,4 +1,4 @@
-package decorator;
+package pattern.decorator;
 
 public class SimpleWindow implements Window{
 	public void draw(){

@@ -1,4 +1,4 @@
-package singleton;
+package pattern.singleton;
 
 /**
  * Singleton pattern: restricts the instantiation of a class to one object. 

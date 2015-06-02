@@ -1,4 +1,4 @@
-package decorator;
+package pattern.decorator;
 
 public abstract class WindowDecorator implements Window{
 	private Window window;
