@@ -12,10 +12,10 @@ public class RepeatedSubString {
 	
 	private static Set<String> getRepeatedSubstrings(String input, int len) {
         if (input == null) throw new IllegalArgumentException();
-        if (input.length() < len * 2) return new TreeSet<>();
+        if (input.length() < len * 2) return new TreeSet<String>();
         int lastIdx = input.length() - len;
-        Set<String> unique = new HashSet<>();
-        Set<String> res = new TreeSet<>();
+        Set<String> unique = new HashSet<String>();
+        Set<String> res = new TreeSet<String>();
         for (int i = 0; i <= lastIdx; i++) {
             String substr = input.substring(i, i + len);
             if (!unique.add(substr)) {
