@@ -1,7 +1,7 @@
 package sorting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SortingListOfStrings {
@@ -20,69 +20,72 @@ public class SortingListOfStrings {
 
 	k.m.n.logn
 
+
+	sort using arrays.sort:
+		 using comparator
+	            		 Arrays.sort(new String[]{"",""}, fromIndex, toIndex, new Comparator<String>() {
+	    	            	
+	    	            	public int compare(String str1,String str2){
+	    	            		return str1.compareTo(str2);
+	    	            	}
+	    				});
 	*/
-	
-	
 	public static void main(String[] args){
-		String[] str = {"cat","tam","tag","elem"};
+		String[] str = {"cat","tam","tag","elem","talm"};
 		System.out.print("input: ");
 		for(String s:str){
 			System.out.print(" "+s);
 		}
-		List<String> list = SortingListOfStrings.sortListOfString(Arrays.asList(str));
+		List<String> list = new LinkedList<String>(Arrays.asList(str));
+		SortingListOfStrings.sortListOfString(list);
 		System.out.println();
 		System.out.print("sorted string: ");
 		for(String s: list){
 			System.out.print(" "+s);
 		}
 	}
-	public static List<String> sortListOfString(List<String> list){
+	public static void sortListOfString(List<String> list){
+		//sort by first character.
+	    sortBasedOnKthCharacter(list,0,list.size() - 1 ,0);
 	    
-	   /* List<Character> charList = new ArrayList<Character>();
-	    for(String s: list){
-	        charList.add(s.charAt(0));
-	    }
-	    */
-	    list = sortBasedOnKthCharacter(list,0,list.size() - 1 ,0);
-	    
-	   // List<String> listOfList = getRepeatedFirstLetter(list);
-	    return list;
+	    //sort by index eg: {tam tag talm} - > tag,talm,tam for every index
+	    sortByIndex(list);
 	}
 
 	//tag,cat tag,elem
-	public static List<String> getRepeatedFirstLetter(List<String> list){
-	    List<String> listOfList = new ArrayList<String>(); 
-	    
-	    //abc,bdc,efg,tag,tam,tal
+	public static void sortByIndex(List<String> list){
+	    int index = 0;
+	    //abc,bdc,elem,tag,tam,talm,tal
 	    for(int i=0;i<list.size() - 1;i++){
 	        
 	        
 	        if(list.get(i).charAt(0) == list.get(i + 1).charAt(0)) {
-	            int j = 0;
-	             List<String> newList = new ArrayList<String>();
+	            index = i;
+	             int maxLength = list.get(index).length();
 	             
 	             //tag,tam,tal,tan
-	            while(list.get(j).charAt(0) == list.get(j + 1).charAt(0)){
-	                newList.add(list.get(j));
-	            }
-	               
-	            while(j<list.get(j).length()){   
-	              //  listOfList.add(i,sortListBasedOnFirstCharacter(newList,0,list.size(),j));
-	                j++;
+	            while(index + 1 < list.size() && list.get(index).charAt(0) == list.get(index + 1).charAt(0)){
+	                if(maxLength < list.get(index + 1).length()){
+	                	maxLength = list.get(index + 1).length();
+	                }
+	                index++;
 	            }
 	            
+	            int k=1;
+	            	while(k<maxLength){
+	            		  sortBasedOnKthCharacter(list,i,index,k++);
+	            	}
+	           i = index + 1;
+	           continue;
 	        }
-	        
-	        listOfList.add(i,list.get(i));
 	    }
-	    
-	    return listOfList;
 	}
 
 
-	public static List<String> sortBasedOnKthCharacter(List<String> list,int start, int end, int k){
-	    if(start>end){
-	        return list;
+	// k - kth element to be sorted by.
+	public static void sortBasedOnKthCharacter(List<String> list,int start, int end, int k){
+	    if(start>=end){
+	        return;
 	    }
 	    
 	    int pivot = partition(list,start,end,k);
@@ -90,7 +93,7 @@ public class SortingListOfStrings {
 	    sortBasedOnKthCharacter(list,start,pivot - 1,k);
 	    sortBasedOnKthCharacter(list,pivot + 1,end,k);
 	    
-	    return list;
+	    return;
 	}
 
 	//cat,tag,tam,elem, 0,3, p-1 tag,cat tag,elem
@@ -100,20 +103,32 @@ public class SortingListOfStrings {
 	    int pivot = ( start + end ) / 2 ;
 	    int i = start;
 	    int j = end;
+	    
 	    while(i<j){
-	        while(list.get(pivot).charAt(k) > list.get(i).charAt(k)){
+	    	while(i < list.size() && k >= list.get(i).length()){
+	    		i++;
+	    	}
+	    	
+	    	while(j < list.size() && k >= list.get(j).length()){
+	    		--j;
+	    	}
+	    	
+	        while(i < list.size() && (k < list.get(pivot).length() && k < list.get(i).length()) && list.get(pivot).charAt(k) > list.get(i).charAt(k)){
 	            i++;
 	        }
 	        
-	        while(list.get(pivot).charAt(k) < list.get(j).charAt(k)){
+	        while(j > 0 && (k < list.get(pivot).length() && k < list.get(j).length()) && list.get(pivot).charAt(k) < list.get(j).charAt(k)){
 	            --j;
 	        }
 	        
+	        if((k < list.get(i).length() && k < list.get(j).length()) && list.get(i).charAt(k) == list.get(j).charAt(k)){
+	        	break;
+	        }
 	        if(i<j){
 	            String iTemp = list.get(i);
 	            String jTemp = list.get(j);
-	            list.add(i,jTemp);
-	            list.add(j,iTemp);
+	            list.set(i,jTemp);
+	            list.set(j,iTemp);
 	        }
 	    }
 	    
