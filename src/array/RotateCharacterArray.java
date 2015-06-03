@@ -34,7 +34,22 @@ public class RotateCharacterArray {
 		}
 	}
 	
+	//easier solution
+	//a,b,c,d,e
 	public static void rotateArray(int[] a, int k){
+		//e,d,c,b,a
+		for(int i=0;i<k;i++){
+			swap(a,i,a.length-i-1);
+		}
+		
+		//d,e,c,b,a
+		reverse(a,0,k - 1);
+		
+		//d,e,c,a,b
+		reverse(a,k,a.length - 1);
+	}
+	
+	public static void rotateArrayOld(int[] a, int k){
 		reverse(a,0,k-1);
 		reverse(a,k,a.length-1);
 		reverse(a,0,a.length-1);
