@@ -16,6 +16,10 @@ package pattern.singleton;
  * Classloaders - If the Singleton class is loaded by 2 different class loaders we'll have 2 different classes, one for each class loader.
  * Global Access Point represented by the class name - The singleton instance is obtained using the class name. At the first view this is an easy way to access it, 
  * but it is not very flexible. If we need to replace the Sigleton class, all the references in the code should be changed accordinglly.
+ * 
+ * 
+ * 
+ * why enum practice is better than other singleton patterns: http://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-with-examples#reflection-and-singleton
  */
 public class Client {
 	public static void main(String[] args){
