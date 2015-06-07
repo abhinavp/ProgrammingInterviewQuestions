@@ -2,6 +2,7 @@ package tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 
 class TreeOperations {
@@ -37,6 +38,12 @@ class TreeOperations {
 		mirror(tree);
 		newTree t = findLCAInNonBST(tree, 20, 75);
 		System.out.println("LCA: "+ t.data);
+
+		System.out.println("Level order: ");
+		printLevelOrder(tree);
+		System.out.println();
+		System.out.println("Zig Zag: ");
+		printZigZag(tree);
 	}
 
 	public static int getHeight(newTree tree) {
@@ -341,6 +348,52 @@ class TreeOperations {
 				nextLevel = 0;
 			}
 		}
+	}
+	
+	public static void printZigZag(newTree tree){
+		if(tree == null){
+			return;
+		}
+		Stack<newTree> eStack = new Stack<newTree>();
+		Stack<newTree> oStack = new Stack<newTree>();
+		oStack.push(tree);
+		printZigZag(1,eStack,oStack);
+	}
+
+	public static void printZigZag(int level, Stack<newTree> eStack, Stack<newTree> oStack){
+		if(eStack.isEmpty() && oStack.isEmpty()){
+			return;
+		}
+		
+		if(level % 2 != 0 && !oStack.isEmpty()){
+			newTree tree;
+			while(!oStack.isEmpty()){
+				tree = oStack.pop();
+				System.out.print(tree.data + " ");
+				if(tree.left!=null){
+					eStack.push(tree.left);
+				}
+				if(tree.right!=null){
+					eStack.push(tree.right);
+				}
+			}
+			
+			
+		} if(level % 2 == 0 && !eStack.isEmpty()){
+			newTree tree;
+			while(!eStack.isEmpty()){
+				tree = eStack.pop();
+				System.out.print(tree.data + " ");
+				if(tree.right!=null){
+					oStack.push(tree.right);
+				}
+				if(tree.left!=null){
+					oStack.push(tree.left);
+				}
+			}
+		}
+		
+		printZigZag(level + 1, eStack, oStack);
 	}
 }
 
