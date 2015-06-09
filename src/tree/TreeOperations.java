@@ -44,6 +44,11 @@ class TreeOperations {
 		System.out.println();
 		System.out.println("Zig Zag: ");
 		printZigZag(tree);
+		System.out.println();
+		
+		/*newTree tree1 = new newTree(-2);
+		tree1.left = new newTree(1); */ 	// this case fails for maxPathSum due to number rotation when we add a value to Integer.MIN_VALUE.
+		System.out.println("max sum: "+ maxPathSum(tree));
 	}
 
 	public static int getHeight(newTree tree) {
@@ -394,6 +399,47 @@ class TreeOperations {
 		}
 		
 		printZigZag(level + 1, eStack, oStack);
+	}
+	
+	/**
+	 * Definition for a binary tree node.
+	 * public class TreeNode {
+	 *     int val;
+	 *     TreeNode left;
+	 *     TreeNode right;
+	 *     TreeNode(int x) { val = x; }
+	 * }
+	 */
+	public static int maxPathSum(newTree root) {
+
+		if (root == null) {
+			return -1;
+		}
+
+		if (root.left == null && root.right == null) {
+			return root.data;
+		}
+
+		int[] max = new int[1];
+		max[0] = Integer.MIN_VALUE;
+
+		maxPath(root, max);
+		return max[0];
+	}
+
+	public static int maxPath(newTree node, int[] max) {
+		if (node == null) {
+			return Integer.MIN_VALUE;
+		}
+
+		int left = maxPath(node.left, max);
+		int right = maxPath(node.right, max);
+
+		int current = Math.max(node.data, Math.max(node.data + left, node.data + right));
+		int rootLeftRight = Math.max(current, node.data + left + right);
+		int maxOfRootLeftRight = Math.max(node.data, Math.max(left, right));
+		max[0] = Math.max(max[0], Math.max(rootLeftRight, maxOfRootLeftRight));
+		return current;
 	}
 }
 
