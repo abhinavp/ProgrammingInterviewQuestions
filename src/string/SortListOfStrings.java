@@ -32,7 +32,7 @@ public class SortListOfStrings {
 		// Find end of run, and reverse range if descending
 		if (((Comparable) a[runHi++]).compareTo(a[lo]) < 0) { // Descending
 			while (runHi < hi && ((Comparable) a[runHi]).compareTo(a[runHi - 1]) < 0){
-				System.out.print(a[runHi]+",");
+				//System.out.print(a[runHi]+",");
 				runHi++;
 			}
 			reverseRange(a, lo, runHi);

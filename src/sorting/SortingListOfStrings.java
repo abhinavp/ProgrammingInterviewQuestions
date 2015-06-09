@@ -121,7 +121,7 @@ public class SortingListOfStrings {
 	            --j;
 	        }
 	        
-	        if((k < list.get(i).length() && k < list.get(j).length()) && list.get(i).charAt(k) == list.get(j).charAt(k)){
+	        if((i<j) && (k < list.get(i).length() && k < list.get(j).length()) && list.get(i).charAt(k) == list.get(j).charAt(k)){
 	        	break;
 	        }
 	        if(i<j){
