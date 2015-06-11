@@ -1,6 +1,83 @@
 package array;
 
 public class MaximumProductSubarray {
+	
+	public static void main(String[] args){
+		int[] array = {1, -2, -3, 0, 7, -8, -2};
+		//int[] array = {0,0,0,-20};
+		//int[] array = {0,0,0,0};
+		System.out.println(maxProductSubArray(array));
+	}
+	
+	//logic is similar to geekforgeeks. 
+	public static int maxProductSubArray(int[] array) {
+		if (array == null) {
+			return 0;
+		}
+		int max = array[0];
+		int min = array[0];
+		int maxProd = array[0];
+		for (int i = 1; i < array.length; i++) {
+
+			int temp = max;
+			max = Math.max(Math.max(array[i], max * array[i]), min * array[i]);
+			min = Math.min(Math.min(array[i], min * array[i]), temp * array[i]);
+
+			if (max > maxProd) {
+				maxProd = max;
+			}
+		}
+
+		return maxProd;
+	}
+
+	/*
+	 * Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+	 * 
+	 * For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6.
+	 * 
+	 * -2,3,-4,-6 2,3,4,-6
+	 * 
+	 * geeks for geeks:http://www.geeksforgeeks.org/maximum-product-subarray/
+	 */
+	public int maxProductSubArray1(int[] array) {
+		int tempMaxProd = 1;
+		int tempMinProd = 1;
+
+		int maxProd = 1;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] > 0) {
+				tempMaxProd = tempMaxProd * array[i];
+				tempMinProd = min(tempMinProd * array[i], 1);
+			}
+
+			if (array[i] == 0) {
+				tempMaxProd = 1;
+				tempMinProd = 1;
+			}
+
+			if (array[i] < 0) {
+				int temp = tempMaxProd * array[i];
+				tempMaxProd = max(tempMinProd * array[i], 1);
+				tempMinProd = temp * array[i];
+			}
+
+			if (tempMaxProd > maxProd) {
+				maxProd = tempMaxProd;
+			}
+		}
+		return maxProd;
+	}
+
+	public int min(int a, int b) {
+		return a > b ? b : a;
+	}
+
+	public int max(int a, int b) {
+		return a > b ? a : b;
+	}
+
+
 
 	public int maxProduct(int[] A) {
 		if (A == null || A.length == 0){

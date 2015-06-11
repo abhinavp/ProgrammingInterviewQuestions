@@ -52,5 +52,49 @@ public class MaximumSubarray {
 		System.out.println("");
 		System.out.println("maximum subarray sum : "+maxSum);
 	}
+	
+
+	// works for all cases. test on leetcode
+	public int maxSubarray(int[] array) {
+		int tempSum = 0;
+		int maxSum = 0;
+		int start = 0, end = 0;
+		boolean areAllNumbersNegative = true;
+		int maxNumber = Integer.MIN_VALUE;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] >= 0 && areAllNumbersNegative) {
+				areAllNumbersNegative = false;
+			}
+
+			if (array[i] > maxNumber) {
+				maxNumber = array[i];
+			}
+
+			tempSum = tempSum + array[i];
+			if (tempSum < 0) {
+				tempSum = 0;
+				start = i + 1;
+				continue;
+			}
+
+			if (tempSum > maxSum) {
+				maxSum = tempSum;
+				end = i;
+				continue;
+			}
+		}
+		if (areAllNumbersNegative) {
+			//System.out.print(maxNumber);
+			return maxNumber;
+		}
+
+		/*System.out.print("MAX sum: " + maxSum + " ");
+		for (int i = start; i <= end; i++) {
+			System.out.print(i + " ");
+		}*/
+
+		return maxSum;
+
+	}
 
 }
