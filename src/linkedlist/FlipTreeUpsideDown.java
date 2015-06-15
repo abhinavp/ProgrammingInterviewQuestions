@@ -37,7 +37,7 @@ Keep in mind: ALL RIGHT NODES IN ORIGINAL TREE ARE LEAF NODE.
 *            / \
 *          3   1
 */
-public class FlipLinkedList {
+public class FlipTreeUpsideDown {
 	public static LinkedList flip(LinkedList linkedList){
 		if(linkedList == null || linkedList.left == null){
 			return linkedList;
