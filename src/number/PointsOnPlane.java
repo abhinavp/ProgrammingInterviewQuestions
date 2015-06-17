@@ -2,6 +2,26 @@ package number;
 
 import java.util.*; 
 
+/**
+1. solution 1 - max heap
+2. solution 2 - quick select.
+3. use a priority queue (implement comparable method).
+
+
+Maintain a max heap of size k.
+
+For each point, calculate the distance to the point P.
+
+1. maintain a max heap of size k.
+2. compare the next element from the array with the max element (top) insert if less than the top (max). 
+	- if heap size is full then remove the top element and insert the
+ 
+Insert that distance into the heap and delete the maximum from the heap if the size of the heap is greater than k.
+
+Running time: O(n log k)
+ * @author abpatil1
+ *
+ */
 public class PointsOnPlane implements PointsOnAPlane{ 
 
 	ArrayList<Point> points = new ArrayList<Point>(); 
@@ -45,7 +65,7 @@ public class PointsOnPlane implements PointsOnAPlane{
 	}
 }
 
-class Point implements Comparable{ 
+class Point implements Comparable<Point>{ 
 	double x; 
 	double y; 
 	Double distFromCenter = null; 
@@ -74,8 +94,8 @@ class Point implements Comparable{
 		this.y = y; 
 	} 
 
-	public int compareTo(Object y){ 
-		Double y_distFromCenter = ((Point)y).getDistFromCenter(); 
+	public int compareTo(Point y){ 
+		Double y_distFromCenter = y.getDistFromCenter(); 
 		if (distFromCenter != null && y_distFromCenter != null){ 
 			if (distFromCenter == y_distFromCenter){ 
 				return 0; 
