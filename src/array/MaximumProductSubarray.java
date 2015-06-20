@@ -27,7 +27,6 @@ public class MaximumProductSubarray {
 				maxProd = max;
 			}
 		}
-
 		return maxProd;
 	}
 
